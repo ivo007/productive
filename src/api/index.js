@@ -25,7 +25,7 @@ export function entries(cb) {
           date: item.attributes.date,
           note: item.attributes.note,
           // note: <Note data={[item.attributes.note]} />, // could not get this outputted as a HTML! :(
-          // note: <Note data={[<ul><li>Reading and understanding task spec</li></ul>]} />,
+          // note: <Note data={[<ul><li>Reading and understanding task spec</li></ul>]} />, // this is working!
           person_name: response.person.name + " " + response.person.surname,
           project_name: response.project.name
         };
@@ -44,7 +44,6 @@ export function deleteTimeEntry(id, cb) {
 }
 
 export function saveEntry(id, cb) {
-  console.log("01");
   setEntry(id, function(response) {
     // fire the callback!
     cb(response);

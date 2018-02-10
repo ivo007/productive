@@ -28,8 +28,6 @@ class Button extends Component {
 
       case "delete":
         deleteTimeEntry(id, function(response) {
-          console.log("006", response);
-
           // force redraw if true
           if (response) {
             _obj.props.callback();

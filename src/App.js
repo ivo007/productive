@@ -1,10 +1,9 @@
 /**
  * TODOs:
- * - pimp README
  * - improve CSS link for react table in index.html
  * - import debugger
- * - implement filters in time entries (person id, before, after)
- * - filter our just today's entries
+ * - implement filters in time entries (before, after)
+ * - filter out just today's entries
  */
 
 import React, { Component } from "react";

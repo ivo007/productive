@@ -19,7 +19,6 @@ class DateMenu extends Component {
   }
 
   handleChange(date) {
-    console.log("HAHA!");
     this.setState({
       startDate: date
     });

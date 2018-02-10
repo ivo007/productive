@@ -51,7 +51,6 @@ class NewTimeEntry extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("A name was submitted: " + this.state.value);
 
     saveEntry(this.state, function(response) {
       // close and rerender!

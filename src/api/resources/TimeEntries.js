@@ -101,7 +101,6 @@ export function deleteEntry(id, cb) {
 
 // fetch
 function updateEntry(data) {
-
   /**
    * Could not get POST to work,
    * cannot pinpoint how payload must look like

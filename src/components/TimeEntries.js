@@ -58,7 +58,7 @@ class TimeEntries extends Component {
         return item;
       });
 
-      console.log("rerender!");
+      console.log("rerendered");
       _obj.setState({data: response});
     });
   }
