@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import {entries} from "../api";
 import GenericTable from "./GenericTable";
 import Button from "./Button";
+import Popup from "../utils/newTimeEntry";
 
 class TimeEntries extends Component {
   constructor(props) {
@@ -43,6 +44,8 @@ class TimeEntries extends Component {
   update() {
     const _obj = this;
     entries(function(response) {
+      // @TODO: filter our just today's entries !!!!!!!!!!!!
+
       // add actions buttons to each item
       response = response.map(function(item) {
         item.actions = <Button
@@ -83,7 +86,12 @@ class TimeEntries extends Component {
 
     return (
       <div>
-        <Button text={"New time entry"} type={"primary"} action={"new"} />
+        <Popup
+          text={"New time entry"}
+          type={"primary"}
+          action={"new"}
+        />
+        {/* <Button text={"New time entry"} type={"primary"} action={"new"} onClick={this.openPopup()} /> */}
         <GenericTable
           data={this.state.data}
           columns={columns}

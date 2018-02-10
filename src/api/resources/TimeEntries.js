@@ -1,5 +1,7 @@
 import Config from "../../config";
 
+// ### GETTING
+
 // fetch
 function timeEntries(personId) {
   const options = {
@@ -69,16 +71,11 @@ export function getEntries(personId, cb) {
   );
 }
 
-export function deleteEntry(id, cb) {
-  executeDelete(id).then(function(res) {
-    // fire the callback!
-    cb(res);
-  });
-}
+
+// ### DELETING
 
 // fetch
 function executeDelete(id) {
-  console.log("003");
   const options = {
     method: "DELETE",
     headers: {
@@ -90,4 +87,45 @@ function executeDelete(id) {
   return fetch(Config.api.root + "time_entries/" + id, options)
     .then(() => true)
     .catch(() => false);
+}
+
+export function deleteEntry(id, cb) {
+  executeDelete(id).then(function(res) {
+    // fire the callback!
+    cb(res);
+  });
+}
+
+
+// ### SETTING
+
+// fetch
+function updateEntry(data) {
+
+  /**
+   * Could not get POST to work,
+   * cannot pinpoint how payload must look like
+   * (documentation here is not helping)
+   */
+
+  const options = {
+    method: "POST",
+    body: data,
+    headers: {
+      "X-Auth-Token": process.env.REACT_APP_AUTH_TOKEN,
+      "X-Organization-Id": process.env.REACT_APP_ORGANIZATION_ID
+    }
+  };
+
+  return fetch(Config.api.root + "time_entries", options)
+    .then(response => response)
+    .catch(error => console.error(error));
+}
+
+export function setEntry(data, cb) {
+  updateEntry(data).then(function(res) {
+    // fire the callback!
+
+    cb(res);
+  });
 }

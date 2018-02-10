@@ -4,6 +4,7 @@
  * - improve CSS link for react table in index.html
  * - import debugger
  * - implement filters in time entries (person id, before, after)
+ * - filter our just today's entries
  */
 
 import React, { Component } from "react";

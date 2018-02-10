@@ -23,6 +23,7 @@ class Button extends Component {
 
     switch (this.props.action) {
       case "new":
+        // opening up in newTimeEntry.js... it's not ideal though
         break;
 
       case "delete":

@@ -5,7 +5,7 @@
 
 // import React, { Component } from "react";
 import { getPerson } from "./resources/OrganizationMemberships";
-import { getEntries, deleteEntry } from "./resources/TimeEntries";
+import { getEntries, deleteEntry, setEntry } from "./resources/TimeEntries";
 
 export function entries(cb) {
   getPerson(function(person) {
@@ -38,6 +38,14 @@ export function entries(cb) {
 
 export function deleteTimeEntry(id, cb) {
   deleteEntry(id, function(response) {
+    // fire the callback!
+    cb(response);
+  });
+}
+
+export function saveEntry(id, cb) {
+  console.log("01");
+  setEntry(id, function(response) {
     // fire the callback!
     cb(response);
   });
