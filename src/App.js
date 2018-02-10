@@ -3,16 +3,13 @@
  * - pimp README
  * - improve CSS link for react table in index.html
  * - import debugger
- * - implement filters in time entries
+ * - implement filters in time entries (person id, before, after)
  */
 
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import TimeEntries from "./components/TimeEntries";
-
-// make environmental variables available immediately
-// require("dotenv").config();
 
 class App extends Component {
   render() {

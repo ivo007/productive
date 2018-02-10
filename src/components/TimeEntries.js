@@ -1,56 +1,93 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import {entries} from "../api";
 import GenericTable from "./GenericTable";
+import Button from "./Button";
 
 class TimeEntries extends Component {
   constructor(props) {
     super(props);
+
+    this.update = this.update.bind(this);
+
     this.state = {
-      name: "test",
-      age: "test",
-      friend: "test"
+      data: [{
+        id: "",
+        person_name: "",
+        duration: "",
+        date: "",
+        project_name: "",
+        note: "",
+        actions: ""
+      }]
     };
   }
 
+  /*
   static get propTypes() {
     return {
-      date: PropTypes.object,
-      time: PropTypes.string,
+      person_name: PropTypes.string,
+      duration: PropTypes.number,
+      date: PropTypes.date,
+      project_name: PropTypes.string,
       note: PropTypes.string
     };
   }
+  */
 
   componentDidMount() {
-    entries(function(response) {
-      console.log("I DID mount!");
-      console.log(response);
-    });
+    // move the code to another function because child Button also triggers re-render
+    this.update();
   }
 
-  mapDataToProps(data) {
-    return {
-      name: data.title,
-      age: 30,
-      friend: data.body
-    };
+  update() {
+    const _obj = this;
+    entries(function(response) {
+      // add actions buttons to each item
+      response = response.map(function(item) {
+        item.actions = <Button
+          text={"Delete"}
+          type={"danger"}
+          action={"delete"}
+          id={item.id}
+          callback={_obj.update}
+        />;
+        return item;
+      });
+
+      console.log("rerender!");
+      _obj.setState({data: response});
+    });
   }
 
   render() {
     const columns = [{
-      Header: "Name",
-      accessor: "name" // String-based value accessors!
+      Header: "Person",
+      accessor: "person_name" // String-based value accessors!
     }, {
-      Header: "Age",
-      accessor: "age"
+      Header: "Duration",
+      accessor: "duration"
     }, {
-      Header: "Friend Name",
-      accessor: "friend"
+      Header: "Date",
+      accessor: "date"
+    }, {
+      Header: "Project",
+      accessor: "project_name"
+    }, {
+      Header: "Description",
+      accessor: "note"
+    }, {
+      Header: "Actions",
+      accessor: "actions"
     }];
 
     return (
-      <div width="200px">
-        <GenericTable data={this.state} columns={columns} />
+      <div>
+        <Button text={"New time entry"} type={"primary"} action={"new"} />
+        <GenericTable
+          data={this.state.data}
+          columns={columns}
+        />
       </div>
     );
   }

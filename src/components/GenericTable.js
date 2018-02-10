@@ -9,7 +9,7 @@ class GenericTable extends Component {
 
   static get propTypes() {
     return {
-      data: PropTypes.object,
+      data: PropTypes.array,
       columns: PropTypes.array
     };
   }
@@ -18,9 +18,8 @@ class GenericTable extends Component {
     return (
       <ReactTable
         minRows={0}
-        defaultPageSize={1}
         showPagination={false}
-        data={[this.props.data]}
+        data={this.props.data}
         columns={this.props.columns}
       />
     );
